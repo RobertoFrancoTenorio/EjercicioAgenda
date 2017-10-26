@@ -23,7 +23,23 @@ public class Contacto {
         }
         else
         {
+            dir = dir.trim();
             this.direccion=dir;
         }
+        String cadTel = Long.toString(tel);
+        if(cadTel.length() == 10)
+        {
+            this.telefono=tel;
+        }
+        else
+        {
+            throw  new IllegalArgumentException("El telefono debe contener 10 digitos");
+        }
+
+    }
+    @Override
+    public String toString()
+    {
+        return nombre+" "+direccion+" "+telefono;
     }
 }
