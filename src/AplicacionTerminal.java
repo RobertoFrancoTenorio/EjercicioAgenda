@@ -1,4 +1,5 @@
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AplicacionTerminal
@@ -46,6 +47,21 @@ public class AplicacionTerminal
                 System.out.println(ex.getMessage());
                 opcion= "";
             }
+            catch (StringIndexOutOfBoundsException ex)
+            {
+                System.out.println(ex.getMessage());
+                opcion="";
+            }
+            catch(InputMismatchException ex)
+            {
+                System.out.println("El numero debe tener digitos solamente");
+                opcion="";
+            }
+            /*catch(Exception ex)
+            {
+                System.out.println(ex.getMessage());
+                opcion="";
+            }*/
         }while(opcion!="terminar");
     }
 
