@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,42 +30,50 @@ public class AplicacionTerminal
     {
         Scanner entrada = new Scanner(System.in);
         String opcion= "";
-        do{
-            try{
-                System.out.println("Opciones: agregar - imprimir - terminar");
-                opcion= entrada.nextLine();
-                switch(opcion) {
-                    case "agregar":
-                        agregar(entrada);
-                        break;
-                    case "imprimir":
-                        agenda.imprimeTodo();
-                        break;
-                }
+        /*catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            opcion="";
+        }*/
+        do try {
+            System.out.println("Opciones: agregar - imprimir - terminar - guardar");
+            opcion = entrada.nextLine();
+            switch (opcion) {
+                case "agregar":
+                    agregar(entrada);
+                    break;
+                case "guardar":
+                    try {
+                        guardar(entrada);
+                        agenda.guardar("archivo.csv");
+                    } catch (IOException e) {
+                        //e.printStackTrace();
+                        System.out.println("Nombre no valido");
+                        opcion="";
+                    }
+                    break;
+                case "imprimir":
+                    agenda.imprimeTodo();
+                    break;
             }
-            catch (IllegalArgumentException ex)
-            {
-                System.out.println(ex.getMessage());
-                opcion= "";
-            }
-            catch (StringIndexOutOfBoundsException ex)
-            {
-                System.out.println(ex.getMessage());
-                opcion="";
-            }
-            catch(InputMismatchException ex)
-            {
-                System.out.println("El numero debe tener digitos solamente");
-                opcion="";
-            }
-            /*catch(Exception ex)
-            {
-                System.out.println(ex.getMessage());
-                opcion="";
-            }*/
-        }while(opcion!="terminar");
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            opcion = "";
+        } catch (StringIndexOutOfBoundsException ex) {
+            System.out.println(ex.getMessage());
+            opcion = "";
+        } catch (InputMismatchException ex) {
+            System.out.println("El numero debe tener digitos solamente");
+            opcion = "";
+        } while(opcion!="terminar");
     }
 
+    private void guardar(Scanner entrada) throws IOException 
+    {
+        System.out.println("Nombre del Archivo: ");
+        String nomArchivo = entrada.nextLine();
+        agenda.guardar(nomArchivo);
+    }
 
     public void agregar(Scanner entrada)
     {
@@ -82,7 +91,7 @@ public class AplicacionTerminal
     public static void main(String args[])
     {
         AplicacionTerminal aplicacion =  new AplicacionTerminal();
-        //aplicacion.demo();
+        aplicacion.demo();
         aplicacion.entradaUsuario();
     }
 }
