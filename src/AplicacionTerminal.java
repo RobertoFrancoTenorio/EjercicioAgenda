@@ -29,7 +29,7 @@ public class AplicacionTerminal
         do
         {
             try{
-                System.out.println("Opciones: agregar - cargar - imprimir - guardar - terminar");
+                System.out.println("Opciones: agregar - cargar - eliminar - imprimir - guardar - terminar");
                 opcion = entrada.nextLine();
                 switch(opcion)
                 {
@@ -39,6 +39,8 @@ public class AplicacionTerminal
                     case "cargar":
                         cargar(entrada);
                         break;
+                    case "eliminar":
+                        eliminar(entrada);
                     case "imprimir":
                         agenda.imprimeTodo();
                         break;
@@ -77,6 +79,12 @@ public class AplicacionTerminal
                 opcion = "";
             }
         }while(opcion!="terminar");
+    }
+
+    private void eliminar(Scanner entrada)
+    {
+        System.out.println("Telefono del contacto a eliminar: ");
+        long telEliminar = entrada.nextLong();
     }
 
     private void cargar(Scanner entrada) throws FileNotFoundException
