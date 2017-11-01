@@ -13,9 +13,9 @@ public class AplicacionTerminal
 
     public void demo()
     {
-        Contacto c1 = new Contacto("Braulio", "UASLP", 4442222707L);
-        Contacto c2 = new Contacto("Roberto", "UASLP", 4442222707L);
-        Contacto c3 = new Contacto("Fernando", "UASLP", 4442222707L);
+        Contacto c1 = new Contacto("Braulio", "UASLP", 1111111111L);
+        Contacto c2 = new Contacto("Roberto", "UASLP", 2222222222L);
+        Contacto c3 = new Contacto("Fernando", "UASLP", 3333333333L);
 //        Agenda agenda = new Agenda();
         this.agenda.agregaContacto(c1);
         this.agenda.agregaContacto(c2);
@@ -85,6 +85,7 @@ public class AplicacionTerminal
     {
         System.out.println("Telefono del contacto a eliminar: ");
         long telEliminar = entrada.nextLong();
+        agenda.eliminarContacto(telEliminar);
     }
 
     private void cargar(Scanner entrada) throws FileNotFoundException

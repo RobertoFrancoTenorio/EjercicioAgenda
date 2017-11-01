@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -61,6 +62,43 @@ public class Agenda {
             long tel = Long.parseLong(arreglo[2].trim());
             Contacto nuevo= new Contacto(arreglo[0],arreglo[1],tel);
             contactos.add(nuevo);
+        }
+    }
+
+    public void eliminarContacto(long telEliminar)
+    {
+        /*for (Contacto c:contactos)
+        {
+            if(telEliminar == c.dimeTel());
+            contactos.remove(c);
+            break;
+        }*/
+        /*Un iterador es un objeto que permite acceder a los
+          elementos de una coleccion uno por uno
+
+          El iterador se declara del tipo de dato (objeto)
+          que contiene la coleccion
+         */
+        Iterator <Contacto> it;
+
+        /*El iterador se inicializa por medio del metodo iterator
+          de la coleccion
+         */
+        it =contactos.iterator();
+
+        /*El iterador tiene 3 metodos
+          1. next()    - regresa el siguiente elemento de la coleccion
+          2. hasNext() - verifica si todavia hay elementos en la coleccion
+          3. remove()  - elimina el elemento actual de la coleccion
+         */
+
+        while(it.hasNext())
+        {
+            Contacto c = it.next();
+            if(telEliminar==c.dimeTel())
+            {
+                it.remove();
+            }
         }
     }
 }

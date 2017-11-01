@@ -47,4 +47,9 @@ public class Contacto {
     {
         return nombre+" "+direccion+" "+telefono;
     }
+
+    public long dimeTel()
+    {
+        return telefono;
+    }
 }
